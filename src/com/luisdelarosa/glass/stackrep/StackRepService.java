@@ -37,6 +37,15 @@ public class StackRepService extends Service {
 	    // Restart this service if it gets killed
 	    return START_STICKY;
 	}
+	
+	@Override
+	public void onDestroy() {
+		// The service is no longer used and is being destroyed
+		if (mLiveCard != null) {
+			// Unpublish the LiveCard
+			mLiveCard.unpublish();
+		}
+	}
 
 	private void updateLiveCardWithProfile(StackOverflowUser profile) {
 		// GOTCHA: If you use setString instead of setCharSequence, you will see the "sad cloud" icon
@@ -48,6 +57,9 @@ public class StackRepService extends Service {
 	}
 
 	private void publishLiveCardToTimeline() {
+		// Don't publish the LiveCard twice
+		if (mLiveCard != null) { return; }
+		
 		TimelineManager timelineManager = TimelineManager.from(this);
 		mLiveCard = timelineManager.createLiveCard(LIVE_CARD_TAG);
 		

@@ -12,7 +12,6 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
-        
         <service
             android:name="com.luisdelarosa.glass.stackrep.StackRepService"
             android:enabled="true"
@@ -27,6 +26,11 @@
                 android:name="com.google.android.glass.VoiceTrigger"
                 android:resource="@xml/voice_trigger_start" />
         </service>
+
+        <activity
+            android:name="com.luisdelarosa.glass.stackrep.MenuActivity"
+            android:theme="@style/MenuTheme" >
+        </activity>
     </application>
 
 </manifest>
