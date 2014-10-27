@@ -7,6 +7,6 @@ public class MockStackOverflowUser extends StackOverflowUser {
 
 	@Override
 	public String getReputation() {
-		return "4,329";
+		return "5,555";
 	}
 }

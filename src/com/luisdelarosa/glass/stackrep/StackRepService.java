@@ -8,7 +8,6 @@ import android.widget.RemoteViews;
 
 import com.google.android.glass.timeline.LiveCard;
 import com.google.android.glass.timeline.LiveCard.PublishMode;
-import com.google.android.glass.timeline.TimelineManager;
 import com.luisdelarosa.stackoverflow.MockStackOverflowUser;
 import com.luisdelarosa.stackoverflow.StackOverflowUser;
 import com.luisdelarosa.stackrep.R;
@@ -60,8 +59,7 @@ public class StackRepService extends Service {
 		// Don't publish the LiveCard twice
 		if (mLiveCard != null) { return; }
 		
-		TimelineManager timelineManager = TimelineManager.from(this);
-		mLiveCard = timelineManager.createLiveCard(LIVE_CARD_TAG);
+		mLiveCard = new LiveCard(this, LIVE_CARD_TAG);
 		
 		// Create remote views
 		mRemoteViews = new RemoteViews(this.getPackageName(), R.layout.live_card_stack_overflow_profile);
